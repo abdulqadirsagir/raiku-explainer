@@ -1,18 +1,22 @@
-﻿import { NextResponse } from 'next/server';
+// app/api/search/route.ts
+import { NextResponse } from 'next/server';
 import { raikuTerms } from '@/lib/definitions';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const q = searchParams.get('q')?.toLowerCase() || '';
+  const query = searchParams.get('q');
 
-  if (!q) return NextResponse.json([]);
+  if (!query) {
+    return NextResponse.json([]);
+  }
 
-  const filtered = raikuTerms.filter(term =>
-    term.term.toLowerCase().includes(q) ||
-    term.definition.toLowerCase().includes(q) ||
-    term.analogy.toLowerCase().includes(q)
+  const lowerQuery = query.toLowerCase();
+
+  // Filter logic
+  const results = raikuTerms.filter((item) =>
+    item.term.toLowerCase().includes(lowerQuery) || 
+    item.definition.toLowerCase().includes(lowerQuery)
   );
 
-  return NextResponse.json(filtered);
+  return NextResponse.json(results);
 }
-
