@@ -2,12 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: Smooth scrolling for the whole site */
-html {
-  scroll-behavior: smooth;
+/* You can add custom styles below, but the top 3 are required */
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
-  background-color: #020617; /* Force Slate-950 hex code */
-  color: #fff;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
