@@ -1,21 +1,20 @@
 ﻿// components/InteractiveDemo.tsx
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export function TrafficSim() {
   const [mode, setMode] = useState<'chaos' | 'raiku'>('chaos');
-  const [dots, setDots] = useState<{ id: number; x: number; delay: number }[]>([]);
-
-  useEffect(() => {
-    // Generate random dots
-    const newDots = Array.from({ length: 20 }).map((_, i) => ({
+  
+  // Initialize dots with random properties using useState initializer function
+  const [dots] = useState(() => 
+    Array.from({ length: 20 }).map((_, i) => ({
       id: i,
       x: Math.random() * 90,
       delay: Math.random() * 2,
-    }));
-    setDots(newDots);
-  }, []);
+      duration: 1 + Math.random(), // Store random duration value for chaos mode
+    }))
+  );
 
   return (
     <div className="w-full bg-slate-950 border border-slate-800 rounded-3xl p-6 overflow-hidden relative shadow-2xl">
@@ -56,7 +55,7 @@ export function TrafficSim() {
             initial={{ top: '-10%' }}
             animate={{ top: '110%' }}
             transition={{
-              duration: mode === 'chaos' ? 1 + Math.random() : 2, // Chaos has random speeds, Raiku is uniform
+              duration: mode === 'chaos' ? dot.duration : 2, // Chaos has random speeds, Raiku is uniform
               repeat: Infinity,
               ease: mode === 'chaos' ? "linear" : "easeInOut",
               delay: mode === 'chaos' ? dot.delay : (dot.id % 3) * 0.6, // Raiku is perfectly timed

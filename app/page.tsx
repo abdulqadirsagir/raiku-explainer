@@ -32,7 +32,7 @@ export default function Home() {
             Certainty in a <br /> Chaotic World.
           </h1>
           <p className="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Blockchain transactions shouldn't be a gamble. Raiku brings 
+            Blockchain transactions shouldn&apos;t be a gamble. Raiku brings 
             <span className="text-cyan-400 font-semibold"> deterministic execution </span> 
             to Solana, guaranteeing your place in the block without the bidding wars.
           </p>
@@ -59,7 +59,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Determinism?</h2>
             <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-              Imagine trying to catch a train, but you don't know if it will stop, 
+              Imagine trying to catch a train, but you don&apos;t know if it will stop, 
               and 500 people are shoving you to get in the door. That is how most 
               blockchains work today.
             </p>

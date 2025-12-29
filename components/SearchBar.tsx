@@ -9,7 +9,6 @@ import { Term } from '@/lib/definitions';
 export default function SearchBar() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Term[]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -17,15 +16,12 @@ export default function SearchBar() {
         setResults([]);
         return;
       }
-      setLoading(true);
       try {
         const res = await fetch(`/api/search?q=${query}`);
         const data = await res.json();
         setResults(data);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
       }
     };
 
